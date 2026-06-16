@@ -12,8 +12,11 @@
   "dependencies": {
     "@clerk/nextjs": "^7.5.2",
     "@stripe/stripe-js": "^9.8.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
     "lucide-react": "^1.18.0",
     "mongodb": "^7.3.0",
+    "motion": "^12.40.0",
     "next": "16.2.9",
     "react": "19.2.4",
     "react-dom": "19.2.4",

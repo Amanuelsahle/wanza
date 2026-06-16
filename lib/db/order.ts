@@ -52,3 +52,13 @@ export async function getOrdersForUser(userId: string): Promise<Order[]> {
     .toArray();
   return orders;
 }
+
+export async function getAllOrders(): Promise<Order[]> {
+  const db = await getDb();
+  const orders = await db
+    .collection<Order>(COLLECTIONS.orders)
+    .find({})
+    .sort({ createdAt: -1 })
+    .toArray();
+  return orders;
+}

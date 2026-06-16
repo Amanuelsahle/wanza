@@ -100,8 +100,8 @@ export default function AddProductModal() {
             Create Catalog Product
           </h3>
           <p className="text-slate-400 text-xs mb-6">
-            Build a custom design item. It will immediately publish to the active
-            storefront grid.
+            Build a custom design item. It will immediately publish to the
+            active storefront grid.
           </p>
 
           <form onSubmit={handleCreateProduct} className="space-y-4">
@@ -117,7 +117,7 @@ export default function AddProductModal() {
                 onChange={(e) =>
                   setForm((prev) => ({ ...prev, title: e.target.value }))
                 }
-                className="w-full bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
+                className="w-full text-black bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
               />
             </div>
 
@@ -131,7 +131,7 @@ export default function AddProductModal() {
                   onChange={(e) =>
                     setForm((prev) => ({ ...prev, category: e.target.value }))
                   }
-                  className="w-full bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
+                  className="w-full text-black bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
                 >
                   <option value="Electronics">Electronics</option>
                   <option value="Lifestyle">Lifestyle</option>
@@ -152,7 +152,7 @@ export default function AddProductModal() {
                   onChange={(e) =>
                     setForm((prev) => ({ ...prev, price: e.target.value }))
                   }
-                  className="w-full bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
+                  className="w-full text-black bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
                 />
               </div>
             </div>
@@ -188,10 +188,10 @@ export default function AddProductModal() {
                       onClick={() =>
                         setForm((prev) => ({ ...prev, image: img }))
                       }
-                      className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 hover:opacity-80 transition-all ${form.image === img ? "border-indigo-600 ring-2 ring-indigo-100" : "border-transparent"}`}
+                      className={`aspect-square rounded-lg overflow-hidden cursor-pointer border-2 hover:opacity-80 transition-all flex items-center justify-center ${form.image === img ? "border-indigo-600 ring-2 ring-indigo-100" : "border-transparent"}`}
                     >
                       <img
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         src={img}
                         alt="preset"
                       />
@@ -211,12 +211,12 @@ export default function AddProductModal() {
                         customImageUrl: e.target.value,
                       }))
                     }
-                    className="w-full bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
+                    className="w-full text-black bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
                   />
                   {form.customImageUrl.trim() && (
-                    <div className="aspect-video rounded-xl overflow-hidden border border-slate-200 bg-slate-100">
+                    <div className="aspect-video rounded-xl overflow-hidden border border-slate-200 bg-slate-100 flex items-center justify-center">
                       <img
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         src={form.customImageUrl.trim()}
                         alt="Custom preview"
                         onError={(e) => {
@@ -255,7 +255,7 @@ export default function AddProductModal() {
                 onChange={(e) =>
                   setForm((prev) => ({ ...prev, description: e.target.value }))
                 }
-                className="w-full bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
+                className="w-full text-black bg-slate-50 focus:bg-white p-3 rounded-xl border border-slate-200 focus:border-indigo-500 outline-none text-sm"
               />
             </div>
 

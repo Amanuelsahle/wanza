@@ -3,7 +3,9 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { CheckCircle } from "lucide-react";
 import { stripe } from "@/lib/stripe";
-import { clearCart } from "@/lib/db/carts";
+import { getCartForUser, clearCart } from "@/lib/db/carts";
+import { calculateCartTotals } from "@/lib/cart-totals";
+import { createOrder } from "@/lib/db/order";
 import RefreshCartOnSuccess from "@/components/refreshCartOnSuccess";
 
 interface SuccessPageProps {
@@ -25,6 +27,12 @@ export default async function SuccessPage({ searchParams }: SuccessPageProps) {
       session.payment_status === "paid" &&
       session.metadata?.userId === userId
     ) {
+      // Get cart items before clearing
+      const cart = await getCartForUser(userId);
+      const { total } = calculateCartTotals(cart);
+      // Save order record
+      await createOrder(userId, cart, total, session.id);
+      // Clear cart after order is saved
       await clearCart(userId);
     }
   } catch (error) {

@@ -56,6 +56,7 @@ export function WanzaProvider({ children }: { children: React.ReactNode }) {
   const [detailProduct, setDetailProduct] = useState<Product | null>(null);
   const [aiStudioOpen, setAiStudioOpen] = useState(false);
   const [aiChatOpen, setAiChatOpen] = useState(false);
+  const [ordersOpen, setOrdersOpen] = useState(false);
 
   const productsSectionRef = useRef<HTMLDivElement>(null);
   const { isSignedIn, isLoaded } = useUser();
@@ -170,6 +171,8 @@ export function WanzaProvider({ children }: { children: React.ReactNode }) {
         setCheckoutOpen,
         checkoutStep,
         setCheckoutStep,
+        ordersOpen,
+        setOrdersOpen,
         addProductOpen,
         setAddProductOpen,
         detailProduct,

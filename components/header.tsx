@@ -1,5 +1,7 @@
 "use client";
 import { LayoutDashboard, ShoppingBag, Search, Key, Sparkles, ShoppingCart } from "lucide-react";
+import { useState } from "react";
+
 import { useWanza } from "@/context/wanza-context";
 import Link from "next/link";
 import { SignInButton, SignOutButton, SignUpButton, Show, useUser, useClerk } from "@clerk/nextjs";
@@ -18,7 +20,11 @@ export default function Header() {
     setShowApiKeyModal,
     setCartOpen,
     cart,
+    // Add orders modal state
+    ordersOpen,
+    setOrdersOpen,
   } = useWanza();
+
 
   const { isSignedIn, isLoaded, user } = useUser();
   const role = user?.publicMetadata?.role as Roles;
@@ -111,6 +117,16 @@ export default function Header() {
                 </span>
               )}
             </button>
+            {/* My Orders button */}
+            <button
+              onClick={() => setOrdersOpen(true)}
+              className="relative p-2.5 rounded-xl hover:bg-slate-100 text-slate-700 transition-all border border-transparent hover:border-slate-200"
+            >
+              <span className="hidden sm:inline">My Orders</span>
+            </button>
+
+
+
             <Show when="signed-out">
               <SignInButton mode="modal">
                 <button className="px-3 bg-slate-900 hover:bg-indigo-600 group-hover:bg-indigo-600 text-white font-bold py-3 rounded-xl text-xs transition-all duration-200 shadow-sm flex items-center justify-center ">

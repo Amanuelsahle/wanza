@@ -1,12 +1,11 @@
 import { NextResponse } from "next/server";
 import { apiError, requireAdmin } from "@/lib/api/auth";
 import { createProduct, getProducts } from "@/lib/db/products";
-import { seedProductsIfEmpty } from "@/lib/db/seed";
+
 import type { ProductInput } from "@/types/product";
 
 export async function GET() {
   try {
-    await seedProductsIfEmpty();
     const products = await getProducts();
     return NextResponse.json({ products });
   } catch (error) {
@@ -19,7 +18,11 @@ export async function POST(request: Request) {
     await requireAdmin();
     const body = (await request.json()) as ProductInput;
 
-    if (!body.title?.trim() || !body.description?.trim() || !body.image?.trim()) {
+    if (
+      !body.title?.trim() ||
+      !body.description?.trim() ||
+      !body.image?.trim()
+    ) {
       return NextResponse.json(
         { error: "Title, description, and image are required" },
         { status: 400 },

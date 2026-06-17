@@ -1,6 +1,7 @@
 import { MongoClient, type Db } from "mongodb";
-import { resolveMongoUri } from "@/lib/mongodb-uri";
+import dns from "node:dns";
 
+dns.setDefaultResultOrder("ipv4first");
 const options = {
   serverSelectionTimeoutMS: 15000,
   connectTimeoutMS: 15000,
@@ -20,8 +21,7 @@ async function connectMongo(): Promise<MongoClient> {
     throw new Error("Missing MONGODB_URI environment variable");
   }
 
-  const resolvedUri = await resolveMongoUri(uri);
-  const client = new MongoClient(resolvedUri, options);
+  const client = new MongoClient(uri, options);
   return client.connect();
 }
 

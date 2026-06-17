@@ -80,7 +80,7 @@ export default function AdminDashboard() {
           <span className="bg-indigo-100 text-indigo-700 text-[10px] font-extrabold uppercase tracking-widest px-2.5 py-1 rounded-md">
             Management
           </span>
-          <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight mt-1.5">
+          <h1 className="text-3xl font-extrabold bg-linear-to-r from-indigo-600 to-violet-700 bg-clip-text text-transparent tracking-tight mt-1.5">
             Operational Dashboard
           </h1>
           <p className="text-slate-500 text-sm mt-1">

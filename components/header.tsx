@@ -1,17 +1,28 @@
 "use client";
-import { LayoutDashboard, ShoppingBag, Search, Key, Sparkles, ShoppingCart } from "lucide-react";
+import {
+  LayoutDashboard,
+  ShoppingBag,
+  Search,
+  Key,
+  Sparkles,
+  ShoppingCart,
+} from "lucide-react";
 import { useState } from "react";
 
 import { useWanza } from "@/context/wanza-context";
 import Link from "next/link";
-import { SignInButton, SignOutButton, SignUpButton, Show, useUser, useClerk } from "@clerk/nextjs";
-
+import {
+  SignInButton,
+  SignOutButton,
+  SignUpButton,
+  Show,
+  useUser,
+  useClerk,
+} from "@clerk/nextjs";
 
 export type Roles = "admin" | null;
 
-
 export default function Header() {
-
   const {
     activeView,
     setActiveView,
@@ -25,7 +36,6 @@ export default function Header() {
     setOrdersOpen,
   } = useWanza();
 
-
   const { isSignedIn, isLoaded, user } = useUser();
   const role = user?.publicMetadata?.role as Roles;
 
@@ -34,11 +44,15 @@ export default function Header() {
   const handleAddToCart = () => {
     if (!isSignedIn || !isLoaded) {
       openSignIn();
-    } else { setCartOpen(true) }
-
+    } else {
+      setCartOpen(true);
+    }
   };
 
-  const totalCartCount = cart.reduce((sum: number, item: any) => sum + item.quantity, 0);
+  const totalCartCount = cart.reduce(
+    (sum: number, item: any) => sum + item.quantity,
+    0,
+  );
 
   return (
     <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
@@ -53,7 +67,7 @@ export default function Header() {
               <span className="bg-indigo-600 text-white p-2 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
                 <Sparkles className="w-5 h-5 animate-pulse" />
               </span>
-              <span className="text-xl md:text-2xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 to-violet-700 bg-clip-text text-transparent">
+              <span className="text-xl md:text-2xl font-extrabold tracking-tight bg-linear-to-r from-indigo-600 to-violet-700 bg-clip-text text-transparent">
                 WANZA
               </span>
               <span className="hidden sm:inline text-[10px] uppercase font-bold text-slate-400 tracking-widest pt-1">
@@ -61,7 +75,6 @@ export default function Header() {
               </span>
             </div>
           </Link>
-
 
           {/* Catalog Search Input */}
           <div className="hidden md:flex flex-1 max-w-md mx-8">
@@ -81,8 +94,8 @@ export default function Header() {
 
           {/* Action Panels Triggers */}
           <div className="flex items-center space-x-3">
-            {role === "admin" && (
-              activeView === "store" ? (
+            {role === "admin" &&
+              (activeView === "store" ? (
                 <Link href="/dashboard">
                   <button
                     onClick={() => setActiveView("admin")}
@@ -102,9 +115,7 @@ export default function Header() {
                     <span>Shop</span>
                   </button>
                 </Link>
-              )
-            )}
-
+              ))}
 
             <button
               onClick={handleAddToCart}
@@ -124,8 +135,6 @@ export default function Header() {
             >
               <span className="hidden sm:inline">My Orders</span>
             </button>
-
-
 
             <Show when="signed-out">
               <SignInButton mode="modal">
@@ -149,7 +158,6 @@ export default function Header() {
           </div>
         </div>
       </div>
-
     </header>
   );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { useWanza } from "@/context/wanza-context";
+import { useUser, useClerk } from "@clerk/nextjs";
 
 interface OrderItem {
   title: string;
@@ -27,8 +28,18 @@ export default function OrdersModal() {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const { isSignedIn, isLoaded, user } = useUser();
+  const { openSignIn } = useClerk();
+
   useEffect(() => {
     if (!ordersOpen) return;
+
+    if (!isSignedIn || !isLoaded) {
+      openSignIn();
+      setOrdersOpen(false);
+      return;
+    }
+
     setLoading(true);
     fetch("/api/orders")
       .then((res) => res.json())
@@ -40,7 +51,7 @@ export default function OrdersModal() {
   }, [ordersOpen]);
 
   if (!ordersOpen) return null;
-  console.log(orders);
+  // console.log(orders);
   return createPortal(
     <div
       className="fixed inset-0 z-50 overflow-hidden flex"

@@ -66,20 +66,6 @@ export default function AddProductModal() {
     }
   };
 
-  const handleAIDraft = async () => {
-    if (!form.title) {
-      showToast("Please write a product title first!", "info");
-      return;
-    }
-
-    setIsDrafting(true);
-    try {
-      showToast("AI drafting is not configured yet.", "info");
-    } finally {
-      setIsDrafting(false);
-    }
-  };
-
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4">
       <div
@@ -237,15 +223,6 @@ export default function AddProductModal() {
                 <label className="block text-xs font-bold uppercase text-slate-400">
                   Description
                 </label>
-                <button
-                  type="button"
-                  disabled={isDrafting}
-                  onClick={handleAIDraft}
-                  className="text-xs text-indigo-600 hover:text-indigo-800 font-bold flex items-center gap-1 bg-indigo-50 px-2 py-0.5 rounded-lg transition-all border border-indigo-100"
-                >
-                  <Sparkles className="w-3 h-3 text-indigo-500" />{" "}
-                  {isDrafting ? "Drafting..." : "AI Auto-Write"}
-                </button>
               </div>
               <textarea
                 rows={3}

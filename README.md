@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Wanza
 
-## Getting Started
+Wanza is a modern e-commerce web application built with **Next.js**, **MongoDB**, **Clerk authentication**, and **Stripe payments**. It includes a customer shopping experience, order tracking, and an admin dashboard for managing products and orders.
 
-First, run the development server:
+## ✨ Features
+
+- 🛒 Browse products and view detailed product information
+- 🧺 Add, update, and remove items from the cart
+- 🔐 Secure sign-in and sign-up flow with Clerk
+- 💳 Checkout and payment processing with Stripe
+- 📦 Track user orders from the frontend
+- 🛠️ Admin dashboard to manage inventory and view orders
+- 📱 Responsive UI for desktop and mobile screens
+
+## 🧰 Tech Stack
+
+| Area               | Technology           |
+| ------------------ | -------------------- |
+| Framework          | Next.js              |
+| UI                 | React + Tailwind CSS |
+| Authentication     | Clerk                |
+| Database           | MongoDB              |
+| Payments           | Stripe               |
+| Data visualization | Recharts             |
+
+## 📁 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+app/                # App routes, pages, and API endpoints
+components/         # Reusable UI components
+context/            # Global app state and providers
+lib/                # Database helpers, auth utilities, API clients
+types/              # Shared TypeScript types
+public/             # Static assets
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ⚙️ Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a `.env.local` file and add the following variables:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```env
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/auth/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/auth/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/
 
-## Learn More
+MONGODB_URI=
+MONGODB_DB=wanza
 
-To learn more about Next.js, take a look at the following resources:
+STRIPE_SECRET_KEY=
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+NEXT_PUBLIC_APP_URL=http://localhost:3000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ▶️ Getting Started
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Install dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Set up your environment variables in `.env.local`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Run the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## 🛠️ Scripts
+
+```bash
+npm run dev      # start the development server
+npm run build    # create a production build
+npm run start    # run the production build
+npm run lint     # run ESLint checks
+npm run seed     # seed database data
+```
+
+## 🗺️ Main Routes
+
+- `/` — home page with featured products
+- `/dashboard` — admin dashboard
+- `/checkout` — checkout flow
+- `/success` — successful payment page
+- `/cancel` — cancelled payment page
+- `/auth/sign-in` — sign-in page
+- `/auth/sign-up` — sign-up page
+
+## 📌 Notes
+
+- The app uses MongoDB collections for products, carts, and orders.
+- Stripe checkout is used for payment processing.
+- Clerk handles authentication and role-based access for admin routes.
